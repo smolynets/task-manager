@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Taskmanager{% endblock meta_title %}
+
+{% block title %}List of tasks{% endblock title %}
+
+{% block content %}
+<a href="" class="btn btn-primary">add task</a>
+
+<!-- Start task listing -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Descripsion</th>
+      <th>Category</th>
+      <th>label</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Author</th>
+      <th>Executer</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in task %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td><a href="">{{ t.name }}</td>
+      <td><a href="">{{ t.description | truncatewords:3 }}</td>
+      <td><a href="">{{ t.category }}</td>
+      <td><a href="">{{ t.label }}</td>
+      <td><a href="">{{ t.start }}</td>
+      <td><a href="">{{ t.finish }}</td>
+      <td><a href="">{{ t.author }}</td>
+      <td><a href="">{{ t.executer }}</td>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<!-- End Students Listing -->
+
+{% endblock content %}

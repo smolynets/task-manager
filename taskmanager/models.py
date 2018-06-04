@@ -43,19 +43,6 @@ class Author(models.Model):
         verbose_name_plural = 'Author'
 
 
-class Executer(models.Model):
-    name = models.ForeignKey(User)
-    created = models.DateTimeField(auto_now_add=True, auto_now=False)
-    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-
-    def __str__(self):
-        return "Executer %s" % self.name
-
-    class Meta:
-        verbose_name = 'Executer'
-        verbose_name_plural = 'Executer'
-
-
 
 
 class Task(models.Model):
@@ -65,8 +52,8 @@ class Task(models.Model):
     label = models.ForeignKey(Label)
     start = models.DateTimeField(blank=True, null=True, default=None)
     finish = models.DateTimeField(blank=True, null=True, default=None)
-    author = models.ManyToManyField(Author)
-    executer = models.ManyToManyField(User)
+    author = models.ForeignKey(Author)
+    executer = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
