@@ -7,7 +7,7 @@
 {% block title %}List of tasks{% endblock title %}
 
 {% block content %}
-<a href="" class="btn btn-primary">add task</a>
+<a href="{% url "add_task" %}" class="btn btn-primary">add task</a>
 
 <!-- Start task listing -->
 <table class="table">

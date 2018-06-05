@@ -52,8 +52,8 @@ class Task(models.Model):
     label = models.ForeignKey(Label)
     start = models.DateTimeField(blank=True, null=True, default=None)
     finish = models.DateTimeField(blank=True, null=True, default=None)
-    author = models.ForeignKey(Author)
-    executer = models.ForeignKey(User)
+    # author = models.ForeignKey(Author)
+    # executer = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
