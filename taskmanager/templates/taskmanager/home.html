@@ -28,14 +28,14 @@
     {% for t in task %}
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td><a href="">{{ t.name }}</td>
-      <td><a href="">{{ t.description | truncatewords:3 }}</td>
-      <td><a href="">{{ t.category }}</td>
-      <td><a href="">{{ t.label }}</td>
-      <td><a href="">{{ t.start }}</td>
-      <td><a href="">{{ t.finish }}</td>
-      <td><a href="">{{ t.author }}</td>
-      <td><a href="">{{ t.executer }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.name }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.description | truncatewords:3 }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.category }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.label }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.start }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.finish }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.author }}</td>
+      <td><a href="{% url "one_task" t.id %}">{{ t.executer }}</td>
       </td>
     </tr>
     {% endfor %}

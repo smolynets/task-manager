@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block meta_title %}Taskmanager{% endblock meta_title %}
+
+{% block title %}List of tasks{% endblock title %}
+
+{% block content %}
+{% for t in task %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <div class="row">
+        <div>
+          name
+        </div>
+        <div>
+          {{ t.name }}
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          description
+        </div>
+        <div>
+          {{ t.description }}
+        </div>
+      </div>
+      <div>
+        {{ t.category }}
+      </div>
+      <div>
+        {{ t.start }}
+      </div>
+      <div>
+        {{ t.finish }}
+      </div>
+      <div>
+        {{ t.author }}
+      </div>
+      <div>
+        {{ t.executer }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
