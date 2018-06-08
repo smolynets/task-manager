@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from datetime import datetime
 from django import forms
+from django.http import JsonResponse
+
 
 from .models import *
 
@@ -105,3 +107,19 @@ def add_task(request):
    return render(request, 'taskmanager/add_task.html', 
    	{'categories': Category.objects.all(),
    	'labels': Label.objects.all()})
+
+
+
+
+def checkname(request):
+    tasks = Task.objects.all()
+    return_dict = dict()  
+    nm = request.POST.get('name', '').strip()
+    for t in tasks:
+      if t.name == nm:
+        a = 1
+        break
+      else:
+        a = 0
+    return_dict["a"] = a
+    return JsonResponse(return_dict)   
