@@ -7,41 +7,44 @@
 {% block title %}List of tasks{% endblock title %}
 
 {% block content %}
-<a href="{% url "add_task" %}" class="btn btn-primary">add task</a>
+<div class="container">
+	<div class="">
+		<a href="{% url "add_task" %}" class="btn btn-primary">add task</a>
+	</div>
+	<!-- Start task listing -->
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th>#</th>
+	      <th>Name</th>
+	      <th>Descripsion</th>
+	      <th>Category</th>
+	      <th>label</th>
+	      <th>Start</th>
+	      <th>Finish</th>
+	      <th>Author</th>
+	      <th>Executer</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    {% for t in task %}
+	    <tr>
+	      <td>{{ forloop.counter }}</td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.name }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.description | truncatewords:3 }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.category }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.label }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.start }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.finish }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.author }}</a></td>
+	      <td><a href="{% url "one_task" t.id %}">{{ t.executer }}</a></td>
+	      </td>
+	    </tr>
+	    {% endfor %}
 
-<!-- Start task listing -->
-<table class="table">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Descripsion</th>
-      <th>Category</th>
-      <th>label</th>
-      <th>Start</th>
-      <th>Finish</th>
-      <th>Author</th>
-      <th>Executer</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for t in task %}
-    <tr>
-      <td>{{ forloop.counter }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.name }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.description | truncatewords:3 }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.category }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.label }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.start }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.finish }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.author }}</td>
-      <td><a href="{% url "one_task" t.id %}">{{ t.executer }}</td>
-      </td>
-    </tr>
-    {% endfor %}
-
-  </tbody>
-</table>
-<!-- End Students Listing -->
+	  </tbody>
+	</table>
+	<!-- End Students Listing -->
+</div>
 
 {% endblock content %}
