@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from datetime import datetime
@@ -19,7 +19,7 @@ def list(request):
 
 
 def one_task(request, pk):
-  task = Task.objects.filter(pk=pk)
+  task = get_object_or_404(Task, pk=pk)
   return render(request, 'taskmanager/one_task.html', {'task':task})
 
 
@@ -34,7 +34,7 @@ def add_task(request):
             return redirect('list')
     else:
         form = AddTaskForm()
-    return render(request, 'taskmanager/add_task.html', {'form': form})
+    return render(request, 'taskmanager/add_edit_task.html', {'form': form})
 
 
 
@@ -51,3 +51,18 @@ def checkname(request):
         a = 0
     return_dict["a"] = a
     return JsonResponse(return_dict)   
+
+
+
+def task_edit(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    if request.method == "POST":
+        form = AddTaskForm(request.POST, instance=task)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.author = request.user
+            task.save()
+            return redirect('list')
+    else:
+        form = AddTaskForm(instance=task)
+    return render(request, 'taskmanager/add_edit_task.html', {'form': form})

@@ -7,7 +7,8 @@
 {% block title %}List of tasks{% endblock title %}
 
 {% block content %}
-{% for t in task %}
+<a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}">edit</span></a>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-6">
@@ -16,7 +17,7 @@
           name
         </div>
         <div>
-          {{ t.name }}
+          {{ task.name }}
         </div>
       </div>
       <div class="row">
@@ -24,7 +25,7 @@
           description
         </div>
         <div>
-          {{ t.description }}
+          {{ task.description }}
         </div>
       </div>
       <div class="row">
@@ -32,7 +33,7 @@
           category
         </div>
         <div>
-          {{ t.category }}
+          {{ task.category }}
         </div>
       </div>
       <div class="row">
@@ -40,7 +41,7 @@
           start
         </div>
         <div>
-          {{ t.start }}
+          {{ task.start }}
         </div>
       </div>
       <div class="row">
@@ -48,7 +49,7 @@
           finish
         </div>
         <div>
-          {{ t.finish }}
+          {{ task.finish }}
         </div>
       </div>
       <div class="row">
@@ -56,7 +57,7 @@
           author
         </div>
         <div>
-          {{ t.author }}
+          {{ task.author }}
         </div>
       </div>
       <div class="row">
@@ -64,12 +65,12 @@
           executor
         </div>
         <div>
-          {{ t.executor }}
+          {{ task.executor }}
         </div>
       </div>
     </div>
   </div>
 </div>
-{% endfor %}
+
 
 {% endblock content %}
