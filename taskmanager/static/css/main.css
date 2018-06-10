@@ -3,7 +3,8 @@
 }
 
 .double_name_alert{
-	margin-top: 50px;
+	margin-top: 10px;
+	margin-bottom: 20px;
 }
 
 .form-field{
@@ -13,4 +14,12 @@
 .add-buttom{
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.save {
+    float: right;
 }

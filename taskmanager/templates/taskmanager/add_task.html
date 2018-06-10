@@ -8,100 +8,20 @@
 
 {% block content %}
 
-{% block status_message %}
-{% if errors %}
-<div class="alert alert-warning" role="alert">
-	Please correct the following errors
-</div>
-{% endif %}
-{% endblock status_message %}
 <div class="container">
     <div class="row">
-		<div class="col-md-6 offset-md-3">
-			<form action="{% url "add_task" %}" method="post"
-			enctype="multipart/form-data" role="form" class="form-horizontal">
-			{% csrf_token %}
-
-			    <div>
-			      <label class="d-none double_name_alert">Імя вже існує, виберіть інше!</label>
-			    </div>
-
-				<div class="form-field {% if errors.name %}has-error{% endif%}">
-					<label for="name" class="col-sm-2 control-label">name</label>
-					<div>
-					<input type="text" value="{{ request.POST.name }}"
-					name="name" id="name" class="form-control name" data-url="{% url 'checkname' %}"/>
-					<span class="help-block">{{ errors.name }}</span>
-					</div>
-				</div>
-
-				<div class="form-field {% if errors.description %}has-error{% endif%}">
-					<label for="title" class="col-sm-2 control-label">description</label>
-					<div>
-					<textarea type="text" value="{{ request.POST.description }}"
-					name="description" id="description" class="form-control" /></textarea>
-					<span class="help-block">{{ errors.description }}</span>
-					</div>
-				</div>
-
-				<div class="form-field {% if errors.category %}has-error{% endif%}">
-					<label for="category" class="col-sm-2 control-label">category</label>
-					<div>
-					<select name="category" id="category" 
-					class="form-control">
-					<option value="">select category</option>
-					{% for category in categories %}
-					<option value="{{ category.id }}" {% if category.id == request.POST.category|add:0 %}selected="1"{% endif %}>{{ category.name }}</option>
-					{% endfor %}
-					</select>
-					<span class="help-block">{{ errors.category }}</span>
-				</div>
-
-				<div class="form-field {% if errors.label %}has-error{% endif%}">
-					<label for="label" class="col-sm-2 control-label">label</label>
-					<div>
-					<select name="label" id="label" 
-					class="form-control">
-					<option value="">select label</option>
-					{% for label in labels %}
-					<option value="{{ label.id }}" {% if label.id == request.POST.label|add:0 %}selected="1"{% endif %}>{{ label.name }}</option>
-					{% endfor %}
-					</select>
-					<span class="help-block">{{ errors.label }}</span>
-				</div>
-
-				<div class="form-field {% if errors.start %}has-error{% endif%}">
-					<label for="start" class="col-sm-2 control-label">start</label>
-					<div>
-					<input type="text" value="{{ request.POST.start }}"
-					name="start" id="start" class="form-control"
-					placeholder="ex. 1984-12-30" />
-					<span class="help-block">{{ errors.start }}</span>
-					</div>
-				</div>
-
-				<div class="form-field {% if errors.finish %}has-error{% endif%}">
-					<label for="finish" class="col-sm-2 control-label">finish</label>
-					<div>
-					<input type="text" value="{{ request.POST.finish }}"
-					name="finish" id="finish" class="form-control"
-					placeholder="ex. 1984-12-30" />
-					<span class="help-block">{{ errors.finish }}</span>
-					</div>
-				</div>
-
-
-				<div class="form-field">
-					<label class="col-sm-2 control-label"></label>
-					<div>
-					<input type="submit" value="Додати" name="add_button"
-					class="btn btn-primary" />
-					<button type="submit" name="cancel_button"
-					class="btn btn-link">Скасувати</button>
-					</div>
-				</div>
-			</form>
+		
+    	<div class="col-md-6 offset-md-3">
+		    <h1>New task</h1>
+		    <div>
+				<label class="d-none double_name_alert">Імя вже існує, виберіть інше!</label>
+			</div>
+		    <form method="POST" class="post-form">{% csrf_token %}
+		        {{ form.as_p }}
+		        <button type="submit" class="save btn btn-default">Save</button>
+		    </form>
 		</div>
+
 	</div>
 </div>
 {% endblock content %}

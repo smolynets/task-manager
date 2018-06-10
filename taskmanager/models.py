@@ -30,19 +30,6 @@ class Label(models.Model):
         verbose_name_plural = 'Labels'
 
 
-class Author(models.Model):
-    name = models.ForeignKey(User)
-    created = models.DateTimeField(auto_now_add=True, auto_now=False)
-    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-
-    def __str__(self):
-        return "Author %s" % self.name
-
-    class Meta:
-        verbose_name = 'Author'
-        verbose_name_plural = 'Author'
-
-
 
 
 class Task(models.Model):
@@ -52,8 +39,9 @@ class Task(models.Model):
     label = models.ForeignKey(Label)
     start = models.DateTimeField(blank=True, null=True, default=None)
     finish = models.DateTimeField(blank=True, null=True, default=None)
-    # author = models.ForeignKey(Author)
-    # executer = models.ForeignKey(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    executer = models.ForeignKey(User, on_delete=models.CASCADE,
+        related_name='executer')
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 

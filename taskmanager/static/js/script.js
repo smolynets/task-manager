@@ -1,7 +1,7 @@
 
-$('.name').mouseout(function(event){
+$('#id_name').mouseout(function(event){
     var box = $(this);    
-    $.ajax(box.data('url'), {
+    $.ajax('/checkname', {
         'type': 'POST',
         'async': true,
         'dataType': 'json',
