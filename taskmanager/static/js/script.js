@@ -40,3 +40,12 @@ $('#id_name').mouseout(function(event){
 
     return true;
   });
+
+
+$( function() {
+    $( "#id_start" ).datepicker();
+  } );
+
+$( function() {
+    $( "#id_finish" ).datepicker();
+  } );
