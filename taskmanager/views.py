@@ -9,9 +9,11 @@ from django.utils import timezone
 from .models import *
 from .forms import AddTaskForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 
+@login_required(login_url='login/')
 def list(request):
     cur_cat = request.COOKIES.get('current_category')
     if cur_cat:
@@ -22,13 +24,13 @@ def list(request):
         'categories': Category.objects.all(), 'cur_cat': cur_cat})
 
 
-
+@login_required(login_url='login/')
 def one_task(request, pk):
   task = get_object_or_404(Task, pk=pk)
   return render(request, 'taskmanager/one_task.html', {'task':task})
 
 
-
+@login_required(login_url='login/')
 def add_task(request):
     if request.method == "POST":
         form = AddTaskForm(request.POST)
@@ -43,7 +45,7 @@ def add_task(request):
 
 
 
-
+@login_required(login_url='login/')
 def checkname(request):
     tasks = Task.objects.all()
     return_dict = dict()  
@@ -58,7 +60,7 @@ def checkname(request):
     return JsonResponse(return_dict)   
 
 
-
+@login_required(login_url='login/')
 def task_edit(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == "POST":

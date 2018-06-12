@@ -19,4 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('taskmanager.urls')),
+    url(r'^users/', include('registration.backends.simple.urls',
+        namespace='users')),
 ]

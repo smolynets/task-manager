@@ -1,3 +1,4 @@
 #python3.6
 
 django==1.11
+django-registration-redux==2.0
