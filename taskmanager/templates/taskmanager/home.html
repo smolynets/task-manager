@@ -9,17 +9,16 @@
 {% block content %}
 <div class="container">
 	<div class="row">	
-		<div class="add-buttom col-md-6">
+		<div class="add-buttom col-md-3">
 			<a href="{% url "add_task" %}" class="btn btn-primary">add task</a>
 		</div>
-		<div class="col-md-6" id="category-selector">
-	        <select>
+		<div class="col-md-3" id="category-selector">
+	        <select id="select-field">
 			    {% if cur_cat %}
 			    	<option value="">{{ cur_cat }}</option>
 			    {% else %}
 			    	<option value="">All Categories</option>
 			    {% endif %}
-			    <option value="">All Categories</option>
 			    {% for cat in categories %}
 			    <option value="{{ cat.name }}"{% if cat.selected %}selected="1"{% endif %}>{{ cat.name }}</option>
 			    {% endfor %}

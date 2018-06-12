@@ -10,66 +10,34 @@
 <a class="btn btn-default" href="{% url 'task_edit' pk=task.pk %}">edit</span></a>
 
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-6">
-      <div class="row">
-        <div class="one_page_title">
-          name
-        </div>
-        <div>
-          {{ task.name }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="one_page_title">
-          description
-        </div>
-        <div>
-          {{ task.description }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="one_page_title">
-          category
-        </div>
-        <div>
-          {{ task.category }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="one_page_title">
-          start
-        </div>
-        <div>
-          {{ task.start }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="one_page_title">
-          finish
-        </div>
-        <div>
-          {{ task.finish }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="one_page_title">
-          author
-        </div>
-        <div>
-          {{ task.author }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="one_page_title">
-          executor
-        </div>
-        <div>
-          {{ task.executor }}
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Start task listing -->
+  <table class="table table-responsive-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Descripsion</th>
+        <th>Category</th>
+        <th>label</th>
+        <th>Start</th>
+        <th>Finish</th>
+        <th>Author</th>
+        <th>Executer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description | truncatewords:3 }}</td>
+        <td>{{ task.category }}</td>
+        <td>{{ task.label }}</td>
+        <td>{{ task.start }}</td>
+        <td>{{ task.finish }}</td>
+        <td>{{ task.author }}</td>
+        <td>{{ task.executer }}</td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 

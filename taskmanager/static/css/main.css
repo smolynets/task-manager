@@ -23,3 +23,11 @@
 .save {
     float: right;
 }
+
+#category-selector{
+	margin-top: 30px;
+}
+
+#select-field{
+	width: 125px;
+}
