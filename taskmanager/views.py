@@ -15,11 +15,14 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login/')
 def list(request):
+    cur_user = User.objects.get(username=request.user.username)
+    task_user= Task.objects.filter(author=cur_user.id)
     cur_cat = request.COOKIES.get('current_category')
     if cur_cat:
-        tasks = Task.objects.filter(category=Category.objects.filter(name=cur_cat))
+        tasks = Task.objects.filter(author=cur_user.id)\
+        .filter(category=Category.objects.filter(name=cur_cat))
     else:
-        tasks = Task.objects.order_by('id').reverse()
+        tasks = Task.objects.filter(author=cur_user.id).order_by('id').reverse()
     return render(request, 'taskmanager/home.html', {'task': tasks,
         'categories': Category.objects.all(), 'cur_cat': cur_cat})
 
