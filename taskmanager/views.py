@@ -13,9 +13,13 @@ from django.contrib.auth.models import User
 
 
 def list(request):
-	tasks = Task.objects.order_by('id').reverse()
-	return render(request, 'taskmanager/home.html', {'task': tasks,
-        'categories': Category.objects.all()})
+    cur_cat = request.COOKIES.get('current_category')
+    if cur_cat:
+        tasks = Task.objects.filter(category=Category.objects.filter(name=cur_cat))
+    else:
+        tasks = Task.objects.order_by('id').reverse()
+    return render(request, 'taskmanager/home.html', {'task': tasks,
+        'categories': Category.objects.all(), 'cur_cat': cur_cat})
 
 
 

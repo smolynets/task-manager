@@ -25,7 +25,6 @@ $('#id_name').mouseout(function(event){
   $('#category-selector select').change(function(event){
     // get value of currently selected group option
     var cat = $(this).val();
-    alert(cat);
 
     if (cat) {
       // set cookie with expiration date 1 year since now;
