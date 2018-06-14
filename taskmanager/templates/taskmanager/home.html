@@ -8,9 +8,22 @@
 
 {% block content %}
 <div class="container">
-	<div class="add-buttom">
-		<a href="{% url "add_task" %}" class="btn btn-primary">add task</a>
+	<div class="row">	
+		<div class="add-buttom col-md-6">
+			<a href="{% url "add_task" %}" class="btn btn-primary">add task</a>
+		</div>
+		<div class="col-md-6" id="category-selector">
+	        <select>
+	          <option value="">All Categories</option>
+	          {% for cat in categories %}
+	          <option value="{{ cat.name }}"{% if cat.selected %}selected="1"{% endif %}>{{ cat.name }}</option>
+	          {% endfor %}
+	        </select>
+	      </div>
+	    </div>
 	</div>
+</div>
+<div class="container">
 	<!-- Start task listing -->
 	<table class="table table-responsive-sm">
 	  <thead>

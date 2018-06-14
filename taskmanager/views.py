@@ -14,7 +14,8 @@ from django.contrib.auth.models import User
 
 def list(request):
 	tasks = Task.objects.order_by('id').reverse()
-	return render(request, 'taskmanager/home.html', {'task': tasks})
+	return render(request, 'taskmanager/home.html', {'task': tasks,
+        'categories': Category.objects.all()})
 
 
 

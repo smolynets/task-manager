@@ -19,3 +19,25 @@ $('#id_name').mouseout(function(event){
       
     });
 });
+
+
+
+  $('#category-selector select').change(function(event){
+    // get value of currently selected group option
+    var cat = $(this).val();
+    alert(cat);
+
+    if (cat) {
+      // set cookie with expiration date 1 year since now;
+      // cookie creation function takes period in days
+      $.cookie('current_category', cat, {'path': '/', 'expires': 365});
+    } else {
+      // otherwise we delete the cookie
+      $.removeCookie('current_category', {'path': '/'});
+    }
+
+    // and reload a page
+    location.reload(true);
+
+    return true;
+  });
